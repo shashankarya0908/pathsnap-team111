@@ -1,0 +1,48 @@
+OOF done
+transition model rows 199082 pos 0.17191408565314795 {'log_diff': -5.0081, 'ratio': 0.0431, 'same': 0.987, 'uturn': -0.8099, 'backward': 0.611, 'turn': -2.0218, 'log_dt': 0.0236, 'unreach': 0.8599}
+{'mode': 'classic', 'beta': 1, 'w_emit': 0.5, 'point_acc': np.float64(0.9561433800676842)}
+{'mode': 'classic', 'beta': 1, 'w_emit': 1, 'point_acc': np.float64(0.9623247461841288)}
+{'mode': 'classic', 'beta': 1, 'w_emit': 2, 'point_acc': np.float64(0.9575592237032944)}
+{'mode': 'classic', 'beta': 3, 'w_emit': 0.5, 'point_acc': np.float64(0.9649837695973479)}
+{'mode': 'classic', 'beta': 3, 'w_emit': 1, 'point_acc': np.float64(0.9600801160301126)}
+{'mode': 'classic', 'beta': 3, 'w_emit': 2, 'point_acc': np.float64(0.955280060777678)}
+{'mode': 'classic', 'beta': 10, 'w_emit': 0.5, 'point_acc': np.float64(0.9567304371848885)}
+{'mode': 'classic', 'beta': 10, 'w_emit': 1, 'point_acc': np.float64(0.9582153463636992)}
+{'mode': 'classic', 'beta': 10, 'w_emit': 2, 'point_acc': np.float64(0.9522411768768562)}
+{'mode': 'classic', 'beta': 30, 'w_emit': 0.5, 'point_acc': np.float64(0.9547620692036742)}
+{'mode': 'classic', 'beta': 30, 'w_emit': 1, 'point_acc': np.float64(0.9522757096484564)}
+{'mode': 'classic', 'beta': 30, 'w_emit': 2, 'point_acc': np.float64(0.9482353753712273)}
+{'mode': 'learned', 'w_trans': 1.0, 'w_emit': 0.25, 'point_acc': np.float64(0.9509289315560467)}
+{'mode': 'learned', 'w_trans': 1.0, 'w_emit': 0.5, 'point_acc': np.float64(0.9572138959872919)}
+{'mode': 'learned', 'w_trans': 1.0, 'w_emit': 1, 'point_acc': np.float64(0.9592167967401064)}
+{'mode': 'learned', 'w_trans': 1.0, 'w_emit': 2, 'point_acc': np.float64(0.9541404793148698)}
+{'mode': 'learned', 'w_trans': 1.0, 'w_emit': 4, 'point_acc': np.float64(0.9498929484080393)}
+{'mode': 'hybrid', 'beta': 3, 'w_learn': 0.25, 'w_emit': 0.5, 'point_acc': np.float64(0.9659161544305546)}
+{'mode': 'hybrid', 'beta': 3, 'w_learn': 0.25, 'w_emit': 1, 'point_acc': np.float64(0.96111609917812)}
+{'mode': 'hybrid', 'beta': 3, 'w_learn': 0.5, 'w_emit': 0.5, 'point_acc': np.float64(0.9662960149181573)}
+{'mode': 'hybrid', 'beta': 3, 'w_learn': 0.5, 'w_emit': 1, 'point_acc': np.float64(0.9614268941225222)}
+{'mode': 'hybrid', 'beta': 3, 'w_learn': 1.0, 'w_emit': 0.5, 'point_acc': np.float64(0.9638787209061399)}
+{'mode': 'hybrid', 'beta': 3, 'w_learn': 1.0, 'w_emit': 1, 'point_acc': np.float64(0.9667104081773603)}
+{'mode': 'hybrid', 'beta': 10, 'w_learn': 0.25, 'w_emit': 0.5, 'point_acc': np.float64(0.9610815664065198)}
+{'mode': 'hybrid', 'beta': 10, 'w_learn': 0.25, 'w_emit': 1, 'point_acc': np.float64(0.9574556253884937)}
+{'mode': 'hybrid', 'beta': 10, 'w_learn': 0.5, 'w_emit': 0.5, 'point_acc': np.float64(0.9613232958077216)}
+{'mode': 'hybrid', 'beta': 10, 'w_learn': 0.5, 'w_emit': 1, 'point_acc': np.float64(0.9610125008633192)}
+{'mode': 'hybrid', 'beta': 10, 'w_learn': 1.0, 'w_emit': 0.5, 'point_acc': np.float64(0.9569376338144899)}
+{'mode': 'hybrid', 'beta': 10, 'w_learn': 1.0, 'w_emit': 1, 'point_acc': np.float64(0.961944885696526)}
+best {'classic': {'beta': 3.0, 'w_emit': 0.5}, 'learned': {'w_trans': 1.0, 'w_emit': 1.0}, 'hybrid': {'beta': 3.0, 'w_learn': 1.0, 'w_emit': 1.0}} selected hybrid clf-only on tuning trips 0.9322467021203121
+00000000 {'classifier_only': 0.9521, 'hmm_classic': 0.9792, 'hmm_learned': 0.9696, 'hmm_hybrid': 0.9816}
+00000007 {'classifier_only': 0.9291, 'hmm_classic': 1.0, 'hmm_learned': 0.9948, 'hmm_hybrid': 1.0}
+00000009 {'classifier_only': 0.878, 'hmm_classic': 0.9047, 'hmm_learned': 0.9094, 'hmm_hybrid': 0.9066}
+00000040 {'classifier_only': 0.9472, 'hmm_classic': 0.9856, 'hmm_learned': 0.981, 'hmm_hybrid': 0.9803}
+00000052 {'classifier_only': 0.9733, 'hmm_classic': 1.0, 'hmm_learned': 0.9809, 'hmm_hybrid': 0.9809}
+00000056 {'classifier_only': 0.9121, 'hmm_classic': 0.9679, 'hmm_learned': 0.9603, 'hmm_hybrid': 0.9697}
+00000065 {'classifier_only': 0.8815, 'hmm_classic': 0.8815, 'hmm_learned': 0.9036, 'hmm_hybrid': 0.8997}
+00000076 {'classifier_only': 0.9314, 'hmm_classic': 0.965, 'hmm_learned': 0.961, 'hmm_hybrid': 0.9724}
+00000077 {'classifier_only': 0.7622, 'hmm_classic': 0.8681, 'hmm_learned': 0.8601, 'hmm_hybrid': 0.9039}
+00000091 {'classifier_only': 0.8993, 'hmm_classic': 0.9565, 'hmm_learned': 0.9519, 'hmm_hybrid': 0.96}
+                 point_acc_micro  point_acc_trip_mean  continuity  route_precision  route_recall  route_f1  breaks  transitions  decode_s
+variant                                                                                                                                  
+classifier_only         0.892067             0.906613    0.938470         0.678571      0.997950  0.797160     131         4391  0.000000
+hmm_classic             0.946816             0.950856    0.977120         0.932583      0.996631  0.959811       3         3291  4.004794
+hmm_hybrid              0.955271             0.955506    0.977125         0.907940      0.997161  0.945428       3         3158  8.463804
+hmm_learned             0.941649             0.947282    0.976699         0.918777      0.996495  0.953631       3         3160  8.097908

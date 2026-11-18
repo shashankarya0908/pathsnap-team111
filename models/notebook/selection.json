@@ -1,0 +1,28 @@
+{
+  "selected": "HistGB",
+  "features": [
+    "dist",
+    "dist_rank",
+    "dist_minus_min",
+    "dist_ratio",
+    "n_cands",
+    "head_diff",
+    "speed",
+    "move_dist",
+    "arc_len",
+    "t_proj",
+    "end_dist",
+    "has_reverse",
+    "ctx_dist_mean",
+    "ctx_dist_max",
+    "ctx_head_diff",
+    "dt_prev",
+    "out_deg_to",
+    "in_deg_from",
+    "trip_sigma",
+    "dist_z",
+    "ctx_dist_z",
+    "head_consistency"
+  ],
+  "seed": 111
+}

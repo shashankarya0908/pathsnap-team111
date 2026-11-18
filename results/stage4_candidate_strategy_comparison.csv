@@ -1,0 +1,7 @@
+strategy,train_miss_rate_pct,student_test_miss_rate_pct,mean_candidates,fallback_pct
+"top-5 nearest, no radius (first iteration)",1.647,1.745,4.97,0.0
+"30 m, k<=8",0.942,0.444,4.586,1.453
+"50 m, k<=5",1.712,1.781,4.14,0.637
+"50 m, k<=8 (chosen)",0.677,0.334,5.669,0.637
+"75 m, k<=8",0.613,0.303,6.371,0.188
+"100 m, k<=12",0.276,0.073,9.207,0.0

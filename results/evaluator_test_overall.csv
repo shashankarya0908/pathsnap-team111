@@ -1,0 +1,13 @@
+,evaluator_test
+trips,10.0
+GPS points,19674.0
+"point accuracy, classifier + HMM (all points)",0.9673681000304971
+"point accuracy, classifier only (all points)",0.9048998678458879
+"route continuity, classifier + HMM (trip mean)",0.9632886362094176
+"route continuity, classifier only (trip mean)",0.9279459654711996
+route precision (trip mean),0.9697691837321386
+route recall (trip mean),0.9951889963357227
+route F1 (trip mean),0.9821274613599977
+mean HMM confidence,0.9865222319888922
+unbridgeable breaks (total),0.0
+"inference time per trip, s (mean)",1.4270981550216675

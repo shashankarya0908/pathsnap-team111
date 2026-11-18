@@ -1,0 +1,10 @@
+[1] train 00000001 gps=1315 breaks=0 gaps>5s=1
+[1] train 00000002 gps=7243 breaks=1 gaps>5s=78
+[1] train 00000003 gps=821 breaks=0 gaps>5s=0
+[1] train 00000004 gps=1064 breaks=0 gaps>5s=320
+[1] train 00000005 gps=1045 breaks=0 gaps>5s=0
+[1] train 00000006 gps=1450 breaks=0 gaps>5s=9
+[1] train 00000008 gps=3093 breaks=0 gaps>5s=0
+[1] train 00000010 gps=2711 breaks=0 gaps>5s=0
+[1] train 00000011 gps=2828 breaks=0 gaps>5s=1
+[1] train 00000012 gps=1608 breaks=0 gaps>5s=0

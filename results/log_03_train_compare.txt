@@ -1,0 +1,54 @@
+train rows 341150 excluded trips ['00000033', '00000054'] test rows 113694
+  LogReg fold0 f1=0.8839 top1=0.8533 0.9s
+  LogReg fold1 f1=0.9122 top1=0.8994 0.6s
+  LogReg fold2 f1=0.8901 top1=0.8670 0.8s
+  LogReg fold3 f1=0.9352 top1=0.9205 0.6s
+  LogReg fold4 f1=0.9277 top1=0.9193 0.9s
+LogReg {"model": "LogReg", "family": "Linear", "cv_macro_f1_mean": 0.9098, "cv_macro_f1_std": 0.0226, "cv_top1_mean": 0.8919, "cv_log_loss_mean": 0.1401, "test_top1": 0.8666, "test_macro_f1": 0.904, "test_macro_precision": 0.9045, "test_macro_recall": 0.9034, "test_log_loss": 0.1347, "test_route_continuity": 0.9208, "train_top1_full_fit": 0.8914, "train_time_s": 1.1277, "inference_time_s": 0.0117, "inference_ms_per_1k_obs": 0.0006}
+  GaussianNB fold0 f1=0.8384 top1=0.8469 0.1s
+  GaussianNB fold1 f1=0.8601 top1=0.8890 0.1s
+  GaussianNB fold2 f1=0.8446 top1=0.8510 0.1s
+  GaussianNB fold3 f1=0.8796 top1=0.9103 0.1s
+  GaussianNB fold4 f1=0.8709 top1=0.8989 0.1s
+GaussianNB {"model": "GaussianNB", "family": "Probabilistic", "cv_macro_f1_mean": 0.8587, "cv_macro_f1_std": 0.0173, "cv_top1_mean": 0.8792, "cv_log_loss_mean": 0.5806, "test_top1": 0.8548, "test_macro_f1": 0.8432, "test_macro_precision": 0.8098, "test_macro_recall": 0.9006, "test_log_loss": 0.6293, "test_route_continuity": 0.9205, "train_top1_full_fit": 0.879, "train_time_s": 0.0835, "inference_time_s": 0.0206, "inference_ms_per_1k_obs": 0.0011}
+  KNN fold0 f1=0.9003 top1=0.8570 0.0s
+  KNN fold1 f1=0.9309 top1=0.9055 0.0s
+  KNN fold2 f1=0.8983 top1=0.8589 0.0s
+  KNN fold3 f1=0.9388 top1=0.9179 0.0s
+  KNN fold4 f1=0.9262 top1=0.9045 0.0s
+KNN {"model": "KNN", "family": "Instance-based", "cv_macro_f1_mean": 0.9189, "cv_macro_f1_std": 0.0185, "cv_top1_mean": 0.8888, "cv_log_loss_mean": 0.1527, "test_top1": 0.8633, "test_macro_f1": 0.9136, "test_macro_precision": 0.921, "test_macro_recall": 0.9067, "test_log_loss": 0.1557, "test_route_continuity": 0.9269, "train_top1_full_fit": 0.9338, "train_time_s": 0.0194, "inference_time_s": 11.1882, "inference_ms_per_1k_obs": 0.5839}
+  DecisionTree fold0 f1=0.9131 top1=0.8688 4.2s
+  DecisionTree fold1 f1=0.9441 top1=0.9144 4.3s
+  DecisionTree fold2 f1=0.9135 top1=0.8744 4.6s
+  DecisionTree fold3 f1=0.9538 top1=0.9336 4.5s
+  DecisionTree fold4 f1=0.9345 top1=0.9050 4.3s
+DecisionTree {"model": "DecisionTree", "family": "Tree", "cv_macro_f1_mean": 0.9318, "cv_macro_f1_std": 0.0182, "cv_top1_mean": 0.8992, "cv_log_loss_mean": 0.1368, "test_top1": 0.8787, "test_macro_f1": 0.9218, "test_macro_precision": 0.9197, "test_macro_recall": 0.9238, "test_log_loss": 0.1383, "test_route_continuity": 0.9292, "train_top1_full_fit": 0.935, "train_time_s": 5.9513, "inference_time_s": 0.01, "inference_ms_per_1k_obs": 0.0005}
+  RandomForest fold0 f1=0.9202 top1=0.8728 34.4s
+  RandomForest fold1 f1=0.9498 top1=0.9198 34.8s
+  RandomForest fold2 f1=0.9214 top1=0.8819 33.4s
+  RandomForest fold3 f1=0.9581 top1=0.9402 36.1s
+  RandomForest fold4 f1=0.9506 top1=0.9275 33.7s
+RandomForest {"model": "RandomForest", "family": "Bagging ensemble", "cv_macro_f1_mean": 0.94, "cv_macro_f1_std": 0.0179, "cv_top1_mean": 0.9084, "cv_log_loss_mean": 0.0896, "test_top1": 0.8929, "test_macro_f1": 0.9351, "test_macro_precision": 0.9402, "test_macro_recall": 0.9301, "test_log_loss": 0.0906, "test_route_continuity": 0.9363, "train_top1_full_fit": 0.9679, "train_time_s": 43.7083, "inference_time_s": 0.3857, "inference_ms_per_1k_obs": 0.0201}
+  ExtraTrees fold0 f1=0.9134 top1=0.8668 11.8s
+  ExtraTrees fold1 f1=0.9432 top1=0.9128 10.7s
+  ExtraTrees fold2 f1=0.9149 top1=0.8765 11.1s
+  ExtraTrees fold3 f1=0.9492 top1=0.9321 11.0s
+  ExtraTrees fold4 f1=0.9450 top1=0.9242 10.6s
+ExtraTrees {"model": "ExtraTrees", "family": "Randomised ensemble", "cv_macro_f1_mean": 0.9331, "cv_macro_f1_std": 0.0175, "cv_top1_mean": 0.9025, "cv_log_loss_mean": 0.0988, "test_top1": 0.8849, "test_macro_f1": 0.9265, "test_macro_precision": 0.9406, "test_macro_recall": 0.9137, "test_log_loss": 0.0994, "test_route_continuity": 0.9292, "train_top1_full_fit": 0.9261, "train_time_s": 11.7677, "inference_time_s": 0.7001, "inference_ms_per_1k_obs": 0.0365}
+  HistGB fold0 f1=0.9195 top1=0.8710 3.5s
+  HistGB fold1 f1=0.9480 top1=0.9200 2.4s
+  HistGB fold2 f1=0.9236 top1=0.8856 1.8s
+  HistGB fold3 f1=0.9594 top1=0.9378 2.2s
+  HistGB fold4 f1=0.9493 top1=0.9264 4.2s
+HistGB {"model": "HistGB", "family": "Boosting", "cv_macro_f1_mean": 0.94, "cv_macro_f1_std": 0.0175, "cv_top1_mean": 0.9082, "cv_log_loss_mean": 0.0906, "test_top1": 0.8912, "test_macro_f1": 0.9342, "test_macro_precision": 0.9337, "test_macro_recall": 0.9347, "test_log_loss": 0.0925, "test_route_continuity": 0.9363, "train_top1_full_fit": 0.943, "train_time_s": 4.1145, "inference_time_s": 0.3138, "inference_ms_per_1k_obs": 0.0164}
+  MLP fold0 f1=0.9138 top1=0.8716 14.3s
+/usr/local/lib/python3.13/site-packages/sklearn/neural_network/_multilayer_perceptron.py:785: ConvergenceWarning: Stochastic Optimizer: Maximum iterations (60) reached and the optimization hasn't converged yet.
+  warnings.warn(
+  MLP fold1 f1=0.9439 top1=0.9160 21.8s
+/usr/local/lib/python3.13/site-packages/sklearn/neural_network/_multilayer_perceptron.py:785: ConvergenceWarning: Stochastic Optimizer: Maximum iterations (60) reached and the optimization hasn't converged yet.
+  warnings.warn(
+  MLP fold2 f1=0.9169 top1=0.8790 21.6s
+  MLP fold3 f1=0.9494 top1=0.9316 15.9s
+  MLP fold4 f1=0.9449 top1=0.9191 13.6s
+MLP {"model": "MLP", "family": "Neural network", "cv_macro_f1_mean": 0.9338, "cv_macro_f1_std": 0.017, "cv_top1_mean": 0.9035, "cv_log_loss_mean": 0.1071, "test_top1": 0.8793, "test_macro_f1": 0.9243, "test_macro_precision": 0.9321, "test_macro_recall": 0.917, "test_log_loss": 0.1108, "test_route_continuity": 0.9392, "train_top1_full_fit": 0.9253, "train_time_s": 15.5466, "inference_time_s": 0.0526, "inference_ms_per_1k_obs": 0.0027}
+done

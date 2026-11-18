@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>PathSnap · Team 111 Evaluator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+  :root { --ink:#1d2433; --muted:#6b7385; --line:#e3e6ee; --accent:#c0392b; --gps:#2563eb; --bg:#f7f8fb; }
+  * { box-sizing:border-box; }
+  body { margin:0; font:14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif; color:var(--ink); background:var(--bg); display:grid; grid-template-columns:340px 1fr; height:100vh; }
+  aside { padding:18px; border-right:1px solid var(--line); overflow:auto; background:#fff; }
+  h1 { font-size:18px; margin:0 0 2px; } .sub { color:var(--muted); margin:0 0 14px; }
+  label { font-size:12px; color:var(--muted); display:block; margin:10px 0 4px; }
+  input { width:100%; padding:7px 9px; border:1px solid var(--line); border-radius:6px; font:inherit; }
+  button { font:inherit; cursor:pointer; border:1px solid var(--line); background:#fff; border-radius:6px; padding:7px 10px; }
+  button:hover { border-color:#9aa3b5; }
+  .row { display:flex; gap:6px; margin-top:6px; }
+  #trips { display:grid; grid-template-columns:repeat(2,1fr); gap:6px; margin-top:8px; }
+  #trips button.active { background:var(--ink); color:#fff; border-color:var(--ink); }
+  #status { margin:12px 0; color:var(--muted); min-height:20px; }
+  #status.err { color:var(--accent); }
+  table { width:100%; border-collapse:collapse; margin-top:6px; }
+  td { padding:5px 2px; border-bottom:1px solid var(--line); } td:last-child { text-align:right; font-variant-numeric:tabular-nums; font-weight:600; }
+  h2 { font-size:13px; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); margin:18px 0 4px; }
+  .legend span { display:inline-flex; align-items:center; gap:6px; margin-right:12px; font-size:12px; }
+  .sw { width:18px; height:4px; display:inline-block; border-radius:2px; }
+  #map { height:100vh; }
+  .note { font-size:12px; color:var(--muted); margin-top:14px; }
+</style>
+</head>
+<body>
+<aside>
+  <h1>PathSnap evaluator <small style="font-weight:400;color:#6b7385">v2</small></h1>
+  <p class="sub">Team 111 · map-matching with a learned-transition HMM</p>
+  <label for="api">API address (Laptop 1)</label>
+  <input id="api" value="http://localhost:8000">
+  <div class="row"><button id="connect">Connect &amp; load trips</button></div>
+  <h2>Evaluation trips</h2>
+  <div id="trips"></div>
+  <div id="status">Not connected.</div>
+  <div class="legend">
+    <span><i class="sw" style="background:var(--gps)"></i>GPS points</span>
+    <span><i class="sw" style="background:var(--accent)"></i>Predicted route</span>
+  </div>
+  <label style="margin-top:10px"><input type="checkbox" id="confmode" style="width:auto"> colour GPS points by HMM confidence</label>
+  <h2>Results</h2>
+  <table id="metrics"><tr><td colspan="2" style="color:var(--muted)">Select a trip.</td></tr></table>
+  <p class="note">The UI only sends a trip ID. Prediction and scoring run on the API; the reference route never leaves the server.</p>
+</aside>
+<div id="map"></div>
+<script>
+const map = L.map('map').setView([20, 0], 2);
+// English place names worldwide: CARTO basemaps label with English names (name_en) where available
+const cartoEn = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
+  {maxZoom: 20, subdomains: 'abcd', attribution: '&copy; OpenStreetMap &copy; CARTO'}).addTo(map);
+const cartoLight = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+  {maxZoom: 20, subdomains: 'abcd', attribution: '&copy; OpenStreetMap &copy; CARTO'});
+const esriStreet = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',
+  {maxZoom: 19, attribution: 'Tiles &copy; Esri'});
+const osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 19, attribution: '&copy; OpenStreetMap'});
+L.control.layers({'English (CARTO Voyager)': cartoEn, 'English light (CARTO)': cartoLight,
+                  'Esri streets': esriStreet, 'OpenStreetMap (local language)': osm}).addTo(map);
+let layers = L.layerGroup().addTo(map), last = null;
+const $ = id => document.getElementById(id);
+const api = () => $('api').value.replace(/\/$/, '');
+function status(msg, err=false){ $('status').textContent = msg; $('status').className = err ? 'err' : ''; }
+const pct = v => (v === undefined || v === null || Number.isNaN(v)) ? 'n/a' : (100*v).toFixed(2) + ' %';
+
+async function loadTrips(){
+  status('Connecting…');
+  try {
+    const r = await fetch(api() + '/trips'); if(!r.ok) throw new Error(r.status);
+    const data = await r.json(); const box = $('trips'); box.innerHTML = '';
+    data.trips.forEach(t => { const b = document.createElement('button'); b.textContent = t; b.onclick = () => run(t, b); box.appendChild(b); });
+    status(data.trips.length + ' trips available.');
+  } catch(e){ status('Could not reach API: ' + e.message, true); }
+}
+
+function confColor(c){ // red (low) -> green (high)
+  const h = Math.round(120 * Math.max(0, Math.min(1, (c - 0.3) / 0.7))); return `hsl(${h},75%,42%)`;
+}
+
+function draw(res){
+  layers.clearLayers();
+  const byConf = $('confmode').checked;
+  res.gps.forEach((p, i) => L.circleMarker(p, {radius: 2.5, weight: 0, fillOpacity: .8,
+      fillColor: byConf ? confColor(res.confidence[i]) : getComputedStyle(document.body).getPropertyValue('--gps')})
+      .bindTooltip(`obs ${i} · arc ${res.point_arc[i]} · conf ${res.confidence[i].toFixed(2)}`).addTo(layers));
+  const route = L.polyline(res.route_latlon, {color: '#c0392b', weight: 4, opacity: .85}).addTo(layers);
+  L.marker(res.gps[0]).bindTooltip('start').addTo(layers);
+  L.marker(res.gps[res.gps.length-1]).bindTooltip('end').addTo(layers);
+  map.fitBounds(route.getBounds().extend(L.latLngBounds(res.gps)), {padding: [30, 30]});
+}
+
+function showMetrics(res){
+  const m = res.metrics || {};
+  const rows = [
+    ['Point accuracy (HMM)', pct(m.point_accuracy)],
+    ['Point accuracy (classifier only)', pct(m.classifier_only_point_accuracy)],
+    ['Route continuity (HMM)', pct(m.route_continuity)],
+    ['Route continuity (classifier only)', pct(m.classifier_only_route_continuity)],
+    ['Route precision (length)', pct(m.route_precision)],
+    ['Route recall (length)', pct(m.route_recall)],
+    ['Route F1', pct(m.route_f1)],
+    ['Mean HMM confidence', pct(res.mean_confidence)],
+    ['GPS points', res.n_points],
+    ['Predicted route arcs', res.route_arcs.length],
+    ['Gaps filled by shortest path', res.gaps_filled],
+    ['Inference time', res.inference_time_s.toFixed(2) + ' s'],
+  ];
+  $('metrics').innerHTML = rows.map(r => `<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join('');
+}
+
+async function run(t, btn){
+  document.querySelectorAll('#trips button').forEach(b => b.classList.remove('active')); btn.classList.add('active');
+  status('Running pipeline for trip ' + t + '…');
+  try {
+    const r = await fetch(api() + '/predict', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({trip_id: t})});
+    if(!r.ok) throw new Error(r.status + ' ' + await r.text());
+    last = await r.json(); draw(last); showMetrics(last); status('Trip ' + t + ' done.');
+  } catch(e){ status('Request failed: ' + e.message, true); }
+}
+$('connect').onclick = loadTrips;
+$('confmode').onchange = () => last && draw(last);
+</script>
+</body>
+</html>

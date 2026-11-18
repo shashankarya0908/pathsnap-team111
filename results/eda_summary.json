@@ -1,0 +1,21 @@
+{
+  "trips_per_partition": {
+    "train": 80,
+    "student_test": 10
+  },
+  "gps_points_per_partition": {
+    "student_test": 19160,
+    "train": 208417
+  },
+  "total_missing_values": 0,
+  "total_bad_coords": 0,
+  "total_nonincreasing_timestamps": 0,
+  "frac_dt_eq_1_overall": 0.9667981027487285,
+  "trips_with_gaps_gt10s": 42,
+  "max_gap_s": 153064.0,
+  "route_consecutive_connected_mean": 0.9993890160712059,
+  "median_nodes": 9305.0,
+  "median_arcs": 18761.5,
+  "trips_with_isolated_nodes": 0,
+  "median_weak_components": 19.0
+}

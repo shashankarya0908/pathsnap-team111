@@ -1,0 +1,23 @@
+feature,group
+dist,geometry
+dist_rank,relative
+dist_minus_min,relative
+dist_ratio,relative
+n_cands,relative
+head_diff,direction
+speed,kinematics
+move_dist,kinematics
+arc_len,geometry
+t_proj,geometry
+end_dist,geometry
+has_reverse,network
+ctx_dist_mean,context
+ctx_dist_max,context
+ctx_head_diff,context
+dt_prev,kinematics
+out_deg_to,network
+in_deg_from,network
+trip_sigma,noise model
+dist_z,noise model
+ctx_dist_z,noise model
+head_consistency,context

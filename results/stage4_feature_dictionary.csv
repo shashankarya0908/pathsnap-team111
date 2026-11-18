@@ -1,0 +1,23 @@
+feature,group,definition
+dist,geometry,perpendicular distance GPS point → arc segment (m)
+dist_rank,relative,rank of the candidate by distance within the observation (0 = nearest)
+dist_minus_min,relative,distance minus the nearest candidate's distance (m)
+dist_ratio,relative,distance / (nearest candidate distance + 1)
+n_cands,relative,number of candidates of the observation (road density)
+head_diff,direction,angle between GPS heading (±2-point window) and arc bearing (0–180°)
+speed,kinematics,speed from the ±2-point window (m/s); tells the model when heading is unreliable
+move_dist,kinematics,distance moved over the ±2-point window (m)
+arc_len,geometry,arc length (m)
+t_proj,geometry,"projection position along the arc (0 = start, 1 = end)"
+end_dist,geometry,distance of the projection to the nearer arc end (m)
+has_reverse,network,1 if the arc has an opposite-direction twin (two-way road)
+ctx_dist_mean,temporal context,mean distance of observations i−3…i+3 to this arc (m)
+ctx_dist_max,temporal context,max distance of observations i−3…i+3 to this arc (m)
+ctx_head_diff,temporal context,mean heading difference over i−3…i+3
+dt_prev,kinematics,time since the previous observation (s)
+out_deg_to,network,out-degree of the arc's end node (junction complexity)
+in_deg_from,network,in-degree of the arc's start node
+trip_sigma,noise model,per-trip robust GPS noise scale = 1.4826·median(nearest distance) (m)
+dist_z,noise model,dist / trip_sigma
+ctx_dist_z,noise model,ctx_dist_mean / trip_sigma
+head_consistency,temporal context,share of i−3…i+3 whose heading agrees with the arc (<45°)

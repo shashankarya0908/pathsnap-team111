@@ -1,0 +1,23 @@
+feature,group,auc
+dist_minus_min,relative,0.8835975301351462
+dist_rank,relative,0.8800405842054771
+dist_ratio,relative,0.8713814862378031
+ctx_head_diff,temporal context,0.8452244661452079
+end_dist,geometry,0.8423615116752602
+head_consistency,temporal context,0.8332105216693712
+head_diff,direction,0.8284001048268234
+dist_z,noise model,0.8240956363076503
+dist,geometry,0.8215142964825337
+ctx_dist_mean,temporal context,0.8163845801804241
+ctx_dist_z,noise model,0.8105092610452636
+ctx_dist_max,temporal context,0.7643547273354774
+arc_len,geometry,0.69025867263963
+n_cands,relative,0.6444680882422418
+has_reverse,network,0.5296559366287672
+trip_sigma,noise model,0.5282646738764625
+out_deg_to,network,0.5251525972721919
+in_deg_from,network,0.5227633283956794
+speed,kinematics,0.5218852875844848
+move_dist,kinematics,0.520824325511037
+t_proj,geometry,0.5074315035950657
+dt_prev,kinematics,0.5015191629260443

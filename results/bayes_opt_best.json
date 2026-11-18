@@ -1,0 +1,57 @@
+{
+  "best_params": {
+    "learning_rate": 0.012860098349830868,
+    "max_leaf_nodes": 97,
+    "min_samples_leaf": 187,
+    "l2_regularization": 1.5953215934534963,
+    "max_iter": 508,
+    "max_features": 0.9945729107982461
+  },
+  "best_cv3_macro_f1": 0.9400823143859389,
+  "n_trials": 20,
+  "total_time_s": 203.09377145767212,
+  "space": [
+    {
+      "name": "learning_rate",
+      "low": 0.01,
+      "high": 0.3,
+      "log": true,
+      "integer": false
+    },
+    {
+      "name": "max_leaf_nodes",
+      "low": 8,
+      "high": 128,
+      "log": true,
+      "integer": true
+    },
+    {
+      "name": "min_samples_leaf",
+      "low": 10,
+      "high": 400,
+      "log": true,
+      "integer": true
+    },
+    {
+      "name": "l2_regularization",
+      "low": 0.0001,
+      "high": 10.0,
+      "log": true,
+      "integer": false
+    },
+    {
+      "name": "max_iter",
+      "low": 100,
+      "high": 600,
+      "log": false,
+      "integer": true
+    },
+    {
+      "name": "max_features",
+      "low": 0.4,
+      "high": 1.0,
+      "log": false,
+      "integer": false
+    }
+  ]
+}

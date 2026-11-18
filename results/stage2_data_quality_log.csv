@@ -1,0 +1,13 @@
+issue,assumption,decision
+Coordinates are angles; trips in many countries (35°S–62°N),Distances must be metric and locally accurate,"Per-trip local equirectangular projection (validated against haversine, section 6)"
+"No missing / invalid values, timestamps monotonic (train, student_test)",Evaluator files could still contain bad rows,"Cleaning rules kept in load_trip(): drop NaN, out-of-range, non-increasing timestamps"
+Repeated identical GPS fixes (vehicle stopped),They are real observations; heading is undefined there,Keep them; windowed heading + speed feature so the model can discount heading
+"Long time gaps (up to ~42 h in train 90, ~15 h in train 78) with little movement","Parking pauses inside one trip, not separate drives",Keep trips whole; HMM relaxes transitions with the time gap
+Broken reference routes (consecutive route arcs not connected) in 11 trips,Reference skips short links; GPS is continuous,Keep trips; ordered alignment confines the effect to points near the break; report reference continuity
+"Route is an ordered arc list, not per-point labels",Vehicle never moves backwards along its own route,Monotonic DP alignment for per-point labels (section 8)
+Trips 33 and 54: most GPS points >100 m from the reference,Reference does not describe those stretches,Exclude both from training; drop any training point with label distance >100 m
+Road networks fragmented into many weak components,Clipping around each trip; the route lies in the largest component,Keep full network; HMM gives disconnected pairs a finite penalty
+~90% of arcs have a reverse twin at identical distance,Distance alone cannot choose the direction,"Heading, context and network features; HMM transitions penalise U-turns"
+Fixed top-5 candidates missed the true arc too often and admitted arcs >1 km away,True arc almost always within 50 m,"50 m radius, k<=8, fallback to 3 nearest (section 9)"
+Train noisier than student_test,Noise level varies per trip,Per-trip robust noise scale and noise-normalised distance features
+Candidate table is too large for GitHub as CSV,Outputs must be reproducible,Save as git-ignored pickles; commit the code that regenerates them

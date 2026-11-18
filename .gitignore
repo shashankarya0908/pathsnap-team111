@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.venv/
+data/processed/
+data/raw/
+models/compare/
+*.ipynb_checkpoints
+.env
+.env.*
+*.pem
+*.key
+credentials.*
+*.zip

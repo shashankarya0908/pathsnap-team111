@@ -1,0 +1,23 @@
+feature,group,auc
+dist_minus_min,relative,0.8836134737146137
+dist_rank,relative,0.8819806495060607
+dist_ratio,relative,0.871405239283692
+ctx_head_diff,context,0.8452617863774289
+end_dist,geometry,0.8424052186201386
+head_consistency,context,0.8332580691640981
+head_diff,direction,0.8284309864790373
+dist_z,noise model,0.8241230955388058
+dist,geometry,0.8215419670320796
+ctx_dist_mean,context,0.8164159278823895
+ctx_dist_z,noise model,0.8105430122646469
+ctx_dist_max,context,0.7643998189370859
+arc_len,geometry,0.6901594292426168
+n_cands,relative,0.6443789315983075
+has_reverse,network,0.5296542544487027
+trip_sigma,noise model,0.52819125953593
+out_deg_to,network,0.5251968921540497
+in_deg_from,network,0.5226589451444954
+speed,kinematics,0.5219624145928456
+move_dist,kinematics,0.5209038511532725
+t_proj,geometry,0.507345894246887
+dt_prev,kinematics,0.5015150212834407

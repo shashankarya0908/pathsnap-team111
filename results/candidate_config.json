@@ -1,0 +1,6 @@
+{
+  "radius": 50.0,
+  "k_max": 8,
+  "k_fallback": 3,
+  "ctx": 3
+}
